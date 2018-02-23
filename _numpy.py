@@ -8,14 +8,14 @@ a = np.array([[1,2,3],[2,3,4]]) #列表转化为矩阵
 '''
 [[1 2 3]
  [2 3 4]]
-'''
+ '''
 
 # 指定数据dtype
 a = np.array([1,2,3],dtype = np.int)
 # print(a.dtype)
 '''
 int64
-'''
+ '''
 # a = np.array([1,2,3],dtype=np.int32)
 # a = np.array([1,2,3],dtype=np.float)
 # a = np.array([1,2,3],dtype=np.float32)
@@ -25,19 +25,16 @@ a = np.zeros((3,4)) # 3rows 4cols
 a = np.ones((3,4),dtype = np.int)
 a = np.empty((3,4)) # 数据为空（很小的数字）
 a = np.arange(10,20,2)
-# print(a)
 '''
 [10 12 14 16 18]
-'''
+ '''
 a = np.arange(12).reshape(3,4)
-# print(a)
 '''
 [[ 0  1  2  3]
  [ 4  5  6  7]
  [ 8  9 10 11]]
-'''
+ '''
 a = np.linspace(1,10,20).reshape(5,4) # 1到10 分割成20个数据
-# print(a)
 '''
 [[  1.           1.47368421   1.94736842   2.42105263]
  [  2.89473684   3.36842105   3.84210526   4.31578947]
@@ -54,7 +51,22 @@ c = a + b # array([10,21,32,43])
 c = a - b
 c = b ** 2 # array([0,1,4,9])
 c = a * b # 分别相乘
-c_dot = np.dot(a,b) #矩阵相乘 
-c_dot = a.dot(b) #
+c_dot = np.dot(a,b) # 矩阵相乘 
+c_dot = a.dot(b) # 矩阵相乘
+c = 10 * np.sin(a) # array([-5.44021111  9.12945251 -9.88031624  7.4511316 ])
+b < 3 # array([ True  True  True False])
 
+# 行列操作运算
+a = np.random.random((2,4))
+# print(a)
+'''
+[[ 0.94667835  0.23327442  0.69600122  0.83438483]
+ [ 0.31039697  0.58137012  0.33945547  0.48471768]]
+ '''
+# print(np.sum(a)) # 4.42627906437
+# print(np.min(a)) # 0.23327442341
+# print(np.max(a)) # 0.946678351687
+# print(np.sum(a,axis = 1)) # [ 2.71033882  1.71594025]
+# print(np.min(a,axis = 0)) # [ 0.31039697  0.23327442  0.33945547  0.48471768]
+# print(np.max(a,axis = 1)) # [ 0.94667835  0.58137012]
 
