@@ -29,9 +29,9 @@ xs = tf.placeholder(tf.float32, [None, 784])
 ys = tf.placeholder(tf.float32, [None, 10])
 
 # add output layer
-#l1 = add_layer(xs, 784, 100, activation_function=None)
-#prediction = add_layer(l1, 100, 10, activation_function=tf.nn.softmax)
-prediction = add_layer(xs, 784, 10, activation_function=tf.nn.softmax)
+l1 = add_layer(xs, 784, 100, activation_function=tf.nn.tanh)
+prediction = add_layer(l1, 100, 10, activation_function=tf.nn.softmax)
+# prediction = add_layer(xs, 784, 10, activation_function=tf.nn.softmax)
 
 # error between prediction and real data
 cross_entropy = tf.reduce_mean(-tf.reduce_sum(ys*tf.log(prediction), reduction_indices=[1]))
