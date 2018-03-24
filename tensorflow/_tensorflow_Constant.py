@@ -1,7 +1,7 @@
 import tensorflow as tf
 
 
-a = tf.constant(2, shape = [5,1,1])
+a = tf.constant(2.0)
 a_1 = tf.zeros([2,3])
 b = tf.zeros_like(a, dtype = tf.float32)
 b_1 = tf.ones_like(b)
@@ -29,8 +29,9 @@ d_2 = tf.range(5)
 # tf.multinomial(logits, num_samples, seed=None, name=None)
 # tf.random_gamma(shape, alpha, beta=None, dtype=tf.float32, seed=None, name=None)
  
-
-
+e =  tf.random_normal([100])
+f_0 = tf.log([[10., -1.]])
+f = tf.multinomial(f_0, 20)
 
 with tf.Session() as sess:
-	print(d_2.eval())		
+	print((a_1+a).eval())		
