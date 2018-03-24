@@ -1,11 +1,14 @@
 import tensorflow as tf
 
 
+seed = tf.set_random_seed(2)
+
 a = tf.constant(2.0)
 a_1 = tf.zeros([2,3])
 b = tf.zeros_like(a, dtype = tf.float32)
-b_1 = tf.ones_like(b)
-c = tf.fill([2,3],8)
+c = tf.fill([2,3],8.0)
+b_1 = tf.ones_like(c)
+
 
 
 
@@ -29,9 +32,11 @@ d_2 = tf.range(5)
 # tf.multinomial(logits, num_samples, seed=None, name=None)
 # tf.random_gamma(shape, alpha, beta=None, dtype=tf.float32, seed=None, name=None)
  
-e =  tf.random_normal([100])
+e =  tf.random_normal([2,3],seed = seed)
 f_0 = tf.log([[10., -1.]])
 f = tf.multinomial(f_0, 20)
 
+t = tf.constant([[1,2,3],[2,1,3],[1,1,2],[4,3,1]])
+
 with tf.Session() as sess:
-	print((a_1+a).eval())		
+	print(tf.reduce_sum(tf.cast(tf.equal(tf.argmax(t,1),tf.constant([1,0,2,0],dtype=tf.int64)),dtype=tf.float32)).eval())

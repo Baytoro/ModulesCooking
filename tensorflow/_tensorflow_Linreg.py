@@ -27,15 +27,15 @@ Y = tf.placeholder(tf.float32, name='Y')
 # Step 3: create weight and bias, initialized to 0.0
 # Make sure to use tf.get_variable
 w = tf.get_variable('weights', initializer=tf.constant(0.0))
-u = tf.get_variable('weights_2', initializer=tf.constant(0.0))
+# u = tf.get_variable('weights_2', initializer=tf.constant(0.0))
 b = tf.get_variable('bias', initializer=tf.constant(0.0))
 
 # Step 4: build model to predict Y
 # e.g. how would you derive at Y_predicted given X, w, and b
-Y_predicted = w * X * X + u * X + b
+Y_predicted = w * X + b
 
 # Step 5: use the square error as the loss function
-loss = tf.square(Y_predicted - Y, name='loss')
+loss = utils.huber_loss(Y, Y_predicted)
 
 # Step 6: using gradient descent with learning rate of 0.001 to minimize loss
 optimizer = tf.train.GradientDescentOptimizer(learning_rate=0.001).minimize(loss)
@@ -68,7 +68,7 @@ with tf.Session() as sess:
     writer.close()
     
     # Step 9: output the values of w and b
-    w_out, u_out, b_out = sess.run([w, u, b])
+    w_out, b_out = sess.run([w, b])
     #############################
     ########## TO DO ############
     #############################
@@ -77,6 +77,6 @@ print('Took: %f seconds' %(time.time() - start))
 
 # uncomment the following lines to see the plot 
 plt.plot(data[:,0], data[:,1], 'bo', label='Real data')
-plt.plot(data[:,0], data[:,0] * data[:,0] * w_out + data[:,0] * u_out + b_out, 'r', label='Predicted data')
+plt.plot(data[:,0], data[:,0] * w_out + b_out, 'r', label='Predicted data')
 plt.legend()
 plt.show()
